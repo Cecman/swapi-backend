@@ -1,5 +1,6 @@
 const Hapi = require('@hapi/hapi');
 const fetch = require('node-fetch');
+const { getFilms, getCharacters } = require('./routes');
 
 const init = async () => {
   const server = Hapi.server({
@@ -15,35 +16,8 @@ const init = async () => {
     },
   });
 
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler: async (request, h) => {
-      const movies = [
-        {
-          title: 'Server Movie 1',
-          episode: '1',
-          characters: ['Char 1', 'Char 2', 'char 3'],
-        },
-        {
-          title: 'Movie 2',
-          episode: '2',
-          characters: ['Char 4', 'Char 5', 'char 3'],
-        },
-        {
-          title: 'Movie 3',
-          episode: '3',
-          characters: ['Char 8', 'Char 5', 'char 1'],
-        },
-      ];
-
-      url = 'https://swapi.dev/api/films/';
-      const responseData = await fetch(url);
-      const jsonData = await responseData.json();
-      console.log(jsonData);
-      return jsonData;
-    },
-  });
+  server.route(getFilms);
+  server.route(getCharacters)
 
   await server.start();
 };

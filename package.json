@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@hapi/hapi": "^20.1.2",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "swapi-node": "^0.6.0"
   }
 }
